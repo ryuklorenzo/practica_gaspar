@@ -255,7 +255,7 @@ public class GuiSwingOrderWinALP extends JFrame {
         txtComments.setLineWrap(true);
         txtComments.setRows(5);
         txtComments.setWrapStyleWord(true);
-        //jScrollPane1.setViewportView(txtComments); si quiero que tenga scroll
+        jScrollPane1.setViewportView(txtComments);// si quiero que tenga scroll
 
         // Ampliamos el ancho del JScrollPane
         jScrollPane1.setBounds(130, 220, 470, 80);
@@ -798,6 +798,7 @@ public class GuiSwingOrderWinALP extends JFrame {
 
     public static void main(String[] args) {
         javafx.application.Platform.startup(() -> {
+            javafx.application.Platform.setImplicitExit(false);
         });
         SwingUtilities.invokeLater(() -> {
             GuiSwingOrderWinALP win = new GuiSwingOrderWinALP();
