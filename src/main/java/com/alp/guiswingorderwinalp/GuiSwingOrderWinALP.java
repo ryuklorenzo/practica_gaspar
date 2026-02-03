@@ -33,27 +33,26 @@ public class GuiSwingOrderWinALP extends JFrame {
 
     private static final String autor = "Angel Lorenzo-Penalva Lozano";
     private final List<Order> orders = new ArrayList<>();
-    
-    private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss"; 
-    
-    private JLabel lblTotalFinal; 
-    private JPanel contentPanel; 
-  
+
+    private static final String DEFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+
+    private JLabel lblTotalFinal;
+    private JPanel contentPanel;
+
     //intentos de poner bordes bien puestos
     private final int MARGIN = 15;
     private final int FRAME_WIDTH = 680;
     private final int FRAME_HEIGHT = 680;
     private final int PANEL_WIDTH = FRAME_WIDTH - (MARGIN * 2);
     private final int PANEL_HEIGHT = FRAME_HEIGHT - (MARGIN * 2) - 35;
-    private final int BUTTON_HEIGHT = 35; 
+    private final int BUTTON_HEIGHT = 35;
     private final int BUTTON_WIDTH = 130;
     private final int BUTTON_Y1 = 500;
     private final int BUTTON_Y2 = 555;
-    
-    private final int INPUT_WIDTH_RIGHT = 130;
-    private final int FIELD_WIDTH_MAX = 420; 
-    private final int FIELD_WIDTH_LEFT = 270; 
 
+    private final int INPUT_WIDTH_RIGHT = 130;
+    private final int FIELD_WIDTH_MAX = 420;
+    private final int FIELD_WIDTH_LEFT = 270;
 
     public GuiSwingOrderWinALP() {
         initComponents();
@@ -396,16 +395,14 @@ public class GuiSwingOrderWinALP extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
     // si quito lo de arriba explota
 
-
-
     // Configura todos los event listeners de los componentes
     private void setupEventListeners() {
-        
+
         btnUpdateDate.addActionListener(e -> updateDateTime());
         btnCheckEmail.addActionListener(e -> checkEmail());
-        btnCompute.addActionListener(e -> calculateGrandTotal()); 
+        btnCompute.addActionListener(e -> calculateGrandTotal());
         cbTip.addActionListener(e -> calculateGrandTotal());
-        
+
         ActionListener typeListener = e -> {
             boolean take = rbTakeaway.isSelected();
             spTable.setEnabled(!take);
@@ -418,8 +415,9 @@ public class GuiSwingOrderWinALP extends JFrame {
         rbDine.addActionListener(typeListener);
         rbTakeaway.addActionListener(typeListener);
         btnInfo.addActionListener(e -> showInfoDialog());
-        btnViewOrder.addActionListener(e -> saveOrder()); 
-        btnCalc.addActionListener(e -> launchCalculator());
+        btnViewOrder.addActionListener(e -> saveOrder());
+        //btnCalc.addActionListener(e -> launchCalculator());
+        btnCalc.addActionListener(e -> abrirCalculadora());
         btnAbout.addActionListener(e -> showAbout());
         btnExit.addActionListener(e -> exitApp());
         addWindowListener(new WindowAdapter() {
@@ -442,7 +440,7 @@ public class GuiSwingOrderWinALP extends JFrame {
 
     private void checkEmail() { //checkeo email
         String email = txtEmail.getText().trim();
-        if (email.isEmpty()) { 
+        if (email.isEmpty()) {
             JOptionPane.showMessageDialog(this, "El correo está vacío. Rellena el correo tontito.", "Email vacío", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -452,7 +450,7 @@ public class GuiSwingOrderWinALP extends JFrame {
             JOptionPane.showMessageDialog(this, "Correo NO válido. Ponlo bien macho que no tengo todo el dia.", "Ta Mal, no se porque, pero Ta Mal", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     private void calculateGrandTotal() { //calcular total
         String txt = txtSubtotal.getText().trim();
         double base = 0.0;
@@ -479,14 +477,14 @@ public class GuiSwingOrderWinALP extends JFrame {
         double grand = base + base * tipPercent;
         lblTotal.setText(String.format(Locale.US, "Total final: %.2f EUR", grand));
     }
-    
+
     private void showInfoDialog() {
         JDialog dialog = new JDialog(this, "Información del sistema", true);
-        dialog.setSize(480, 350); 
+        dialog.setSize(480, 350);
         dialog.setLayout(null);
         dialog.setLocationRelativeTo(this);
         dialog.setResizable(false);
-        
+
         String os = System.getProperty("os.name");
         String osType;
         if (os.toLowerCase().contains("win")) {
@@ -508,7 +506,7 @@ public class GuiSwingOrderWinALP extends JFrame {
         Color botonEsencial = new Color(0, 102, 204);
         Color fg = new Color(40, 60, 80);
         dialog.getContentPane().setBackground(dialogBg);
-        
+
         JLabel lblWelcome = new JLabel("¡Bienvenido a TakeOrderApp!", JLabel.CENTER);
         lblWelcome.setBounds(10, 15, 460, 30);
         lblWelcome.setFont(new Font("Segoe UI", Font.BOLD, 16));
@@ -520,8 +518,8 @@ public class GuiSwingOrderWinALP extends JFrame {
         info.setBackground(dialogBg);
         info.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         info.setForeground(fg);
-        info.setBounds(15, 55, 440, 200); 
-        
+        info.setBounds(15, 55, 440, 200);
+
         String text = "=======================================\n"
                 + "Sistema Operativo: " + osType + "\n"
                 + "     Detalles: " + os + "\n"
@@ -536,7 +534,7 @@ public class GuiSwingOrderWinALP extends JFrame {
         dialog.add(info);
 
         JButton btnClose = new JButton("Cerrar");
-        btnClose.setBounds(180, 270, 120, 35); 
+        btnClose.setBounds(180, 270, 120, 35);
         btnClose.setFont(new Font("Segoe UI", Font.BOLD, 12));
         btnClose.setBackground(botonEsencial);
         btnClose.setForeground(Color.BLACK);
@@ -546,7 +544,7 @@ public class GuiSwingOrderWinALP extends JFrame {
 
         dialog.setVisible(true);
     }
-    
+
     private String getHostName() {
         try {
             return java.net.InetAddress.getLocalHost().getHostName();
@@ -559,7 +557,7 @@ public class GuiSwingOrderWinALP extends JFrame {
         String name = txtName.getText().trim();
         String email = txtEmail.getText().trim();
         String totalText = txtSubtotal.getText().trim();
-        
+
         // 1. Chequeos antes de guardar
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Nombre del cliente es obligatorio.", "Ta Mal, no se porque, pero Ta Mal", JOptionPane.ERROR_MESSAGE);
@@ -575,7 +573,7 @@ public class GuiSwingOrderWinALP extends JFrame {
             JOptionPane.showMessageDialog(this, "Correo electrónico no válido.", "Ta Mal, no se porque, pero Ta Mal", JOptionPane.ERROR_MESSAGE);
             return;
         }
-/* */
+        /* */
         double finalTotal = 0.0;
         double base = 0.0;
         try {
@@ -584,7 +582,7 @@ public class GuiSwingOrderWinALP extends JFrame {
                 JOptionPane.showMessageDialog(this, "El total debe ser mayor que 0.", "Ta Mal, no se porque, pero Ta Mal", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            
+
             // Recalcula el total final con propina para pasarlo a Order
             String tipStr = (String) cbTip.getSelectedItem();
             double tipPercent = 0.0;
@@ -604,19 +602,18 @@ public class GuiSwingOrderWinALP extends JFrame {
             return;
         }
 
-        if (!rbCash.isSelected() && !rbCard.isSelected()){
+        if (!rbCash.isSelected() && !rbCard.isSelected()) {
             JOptionPane.showMessageDialog(this, "Pon un tipo de pago", "Ta Mal, no se porque, pero Ta Mal", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        if (rbDine.isSelected() && (spTable.getValue() instanceof Integer) && ((Integer) spTable.getValue()) == 0){
+        if (rbDine.isSelected() && (spTable.getValue() instanceof Integer) && ((Integer) spTable.getValue()) == 0) {
             JOptionPane.showMessageDialog(this, "Si es para comer en el restaurante, pon un número de mesa válido (mayor que 0).", "Ta Mal, no se porque, pero Ta Mal", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         // Actualizar etiqueta del total por si no se hizo con el botón
         lblTotalFinal.setText(String.format(Locale.US, "Total final: %.2f EUR", finalTotal));
-
 
         //Construir objeto Order
         String dateTime = txtDate.getText();
@@ -645,7 +642,7 @@ public class GuiSwingOrderWinALP extends JFrame {
     }
 
     // Muestra el resumen de todos los pedidos guardados.
-    private void mostrarPedidos(){
+    private void mostrarPedidos() {
         StringBuilder all = new StringBuilder();
         int i = 1;
         if (orders.isEmpty()) {
@@ -657,7 +654,6 @@ public class GuiSwingOrderWinALP extends JFrame {
             }
         }
 
-
         JTextArea textArea = new JTextArea(all.toString());
         textArea.setEditable(false);
         textArea.setFont(new Font("Monospaced", Font.PLAIN, 12));
@@ -666,27 +662,34 @@ public class GuiSwingOrderWinALP extends JFrame {
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setPreferredSize(new Dimension(550, 550));
 
-
         JOptionPane.showMessageDialog(this, scrollPane, "Pedidos guardados (" + orders.size() + ")", JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     private void abrirCalculadora() {
-    javafx.application.Platform.runLater(() -> {
-        try {
-            javafx.stage.Stage stage = new javafx.stage.Stage();
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/com/alp/guiswingorderwinalp/calculator.fxml"));
-            javafx.scene.Parent root = loader.load();
-            stage.setScene(new javafx.scene.Scene(root));
-            stage.setTitle("Calculadora de Pedidos");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    });
-}
+        javafx.application.Platform.runLater(() -> {
+            try {
+                javafx.stage.Stage stage = new javafx.stage.Stage();
+                // Asegúrate de que esta ruta coincida con la de resources
+                String fxmlPath = "/com/alp/guiswingorderwinalp/calculator.fxml";
+                javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource(fxmlPath));
+
+                if (getClass().getResource(fxmlPath) == null) {
+                    System.err.println("Error: No se encuentra el FXML en " + fxmlPath);
+                    return;
+                }
+
+                javafx.scene.Parent root = loader.load();
+                stage.setScene(new javafx.scene.Scene(root));
+                stage.setTitle("Calculadora de Restaurante");
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
     // Lanza la calculadora según el sistema operativo
-    private void launchCalculator() { 
+    private void launchCalculator() {
         String os = System.getProperty("os.name").toLowerCase();
         try {
             if (os.contains("win")) {
@@ -709,21 +712,21 @@ public class GuiSwingOrderWinALP extends JFrame {
                         JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception ex) {
-             JOptionPane.showMessageDialog(this, "No se pudo abrir la calculadora tontito: "
-                         + ex.getMessage(), "Ta Mal, no se porque, pero Ta Mal", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se pudo abrir la calculadora tontito: "
+                    + ex.getMessage(), "Ta Mal, no se porque, pero Ta Mal", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void showAbout() { 
-        String aboutMessage = "SISTEMA DE GESTION DE PEDIDOS\n" +
-                "Desarrollador:\n" +
-                "   " + autor + "\n" +
-                "Aplicacion:\n" +
-                "   TakeOrderApp\n" +
-                "Version:\n" +
-                "   1.0 \n" +
-                "Fecha:\n" +
-                "   Noviembre 2025\n";
+    private void showAbout() {
+        String aboutMessage = "SISTEMA DE GESTION DE PEDIDOS\n"
+                + "Desarrollador:\n"
+                + "   " + autor + "\n"
+                + "Aplicacion:\n"
+                + "   TakeOrderApp\n"
+                + "Version:\n"
+                + "   1.0 \n"
+                + "Fecha:\n"
+                + "   Noviembre 2025\n";
 
         JTextArea textArea = new JTextArea(aboutMessage);
         textArea.setEditable(false);
@@ -740,7 +743,7 @@ public class GuiSwingOrderWinALP extends JFrame {
                 "Acerca de la Aplicacion",
                 JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     private void exitApp() {
         int opt = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea salir?\nSe perderán los datos no guardados.",
                 "Confirmar salida", JOptionPane.YES_NO_OPTION);
@@ -750,29 +753,52 @@ public class GuiSwingOrderWinALP extends JFrame {
                     "Adiós", JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
         }
-         if (opt == JOptionPane.NO_OPTION) {
-             JOptionPane.showMessageDialog(this, "Menos mal que te he preguntado, sino la lías",
+        if (opt == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(this, "Menos mal que te he preguntado, sino la lías",
                     "Chao pescao", JOptionPane.INFORMATION_MESSAGE);
-         }
+        }
     }
 
     // Limpia los campos de la interfaz para un nuevo pedido.
     private void vaciarCampos() {
-        if (txtName != null) txtName.setText("");
-        if (txtEmail != null) txtEmail.setText("");
-        if (txtComments != null) txtComments.setText("");
-        if (txtSubtotal != null) txtSubtotal.setText("");
-        if (lblTotalFinal != null) lblTotalFinal.setText("Total final: 0.00 EUR"); 
-        if (rbDine != null) rbDine.setSelected(true);
-        if (spTable != null) spTable.setValue(1);
-        if (rbCash != null) rbCash.setSelected(true); 
-        if (rbCard != null) rbCard.setSelected(false);
-        if (cbTip != null) cbTip.setSelectedIndex(0);
-        if (chkInvoice != null) chkInvoice.setSelected(false);
+        if (txtName != null) {
+            txtName.setText("");
+        }
+        if (txtEmail != null) {
+            txtEmail.setText("");
+        }
+        if (txtComments != null) {
+            txtComments.setText("");
+        }
+        if (txtSubtotal != null) {
+            txtSubtotal.setText("");
+        }
+        if (lblTotalFinal != null) {
+            lblTotalFinal.setText("Total final: 0.00 EUR");
+        }
+        if (rbDine != null) {
+            rbDine.setSelected(true);
+        }
+        if (spTable != null) {
+            spTable.setValue(1);
+        }
+        if (rbCash != null) {
+            rbCash.setSelected(true);
+        }
+        if (rbCard != null) {
+            rbCard.setSelected(false);
+        }
+        if (cbTip != null) {
+            cbTip.setSelectedIndex(0);
+        }
+        if (chkInvoice != null) {
+            chkInvoice.setSelected(false);
+        }
     }
-    
+
     public static void main(String[] args) {
-        javafx.application.Platform.startup(() -> {});
+        javafx.application.Platform.startup(() -> {
+        });
         SwingUtilities.invokeLater(() -> {
             GuiSwingOrderWinALP win = new GuiSwingOrderWinALP();
             win.setVisible(true);

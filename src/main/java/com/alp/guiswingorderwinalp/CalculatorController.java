@@ -24,24 +24,23 @@ public class CalculatorController {
     @FXML
     private void onOperatorClick(ActionEvent event) {
         String value = ((Button)event.getSource()).getText();
-        if (!"=".equals(value)) {
-            if (!operator.isEmpty()) return;
-            operator = value;
+        if (!display.getText().isEmpty()) {
             num1 = Double.parseDouble(display.getText());
-            display.setText("");
+            operator = value;
+            start = true;
         }
     }
 
     @FXML
     private void onEqualClick() {
-        if (operator.isEmpty()) return;
+        if (operator.isEmpty() || display.getText().isEmpty()) return;
         double num2 = Double.parseDouble(display.getText());
         double result = 0;
         switch (operator) {
             case "+": result = num1 + num2; break;
             case "-": result = num1 - num2; break;
             case "*": result = num1 * num2; break;
-            case "/": result = num2 != 0 ? num1 / num2 : 0; break;
+            case "/": result = (num2 != 0) ? num1 / num2 : 0; break;
         }
         display.setText(String.valueOf(result));
         operator = "";
