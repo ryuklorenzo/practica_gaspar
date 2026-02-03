@@ -2,6 +2,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.image.*?>
 
 <VBox spacing="10" alignment="CENTER" prefWidth="300" prefHeight="450" 
       style="-fx-background-color: #2c3e50; -fx-padding: 20;"
@@ -12,24 +13,153 @@
                style="-fx-font-size: 24; -fx-background-color: #ecf0f1; -fx-min-height: 50;"/>
     
     <GridPane hgap="10" vgap="10" alignment="CENTER">
-        <Button text="7" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-        <Button text="8" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-        <Button text="9" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
-        <Button text="/" onAction="#onOperatorClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="3" GridPane.rowIndex="0" style="-fx-base: #e67e22;"/>
+        <Button text="7" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="0" GridPane.rowIndex="0" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../vr/7.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button text="8" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="1" GridPane.rowIndex="0" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../vr/8.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button text="9" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="2" GridPane.rowIndex="0" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../vr/9.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button text="/" onAction="#onOperatorClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="3" GridPane.rowIndex="0" style="-fx-base: #e67e22;" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../vr/dividir.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
 
-        <Button text="4" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <Button text="5" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-        <Button text="6" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-        <Button text="*" onAction="#onOperatorClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="3" GridPane.rowIndex="1" style="-fx-base: #e67e22;"/>
+        <Button text="4" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="0" GridPane.rowIndex="1" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../vr/4.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button text="5" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="1" GridPane.rowIndex="1" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../vr/5.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button text="6" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="2" GridPane.rowIndex="1" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../vr/6.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button text="*" onAction="#onOperatorClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="3" GridPane.rowIndex="1" style="-fx-base: #e67e22;" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../vr/por.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
 
-        <Button text="1" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-        <Button text="2" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-        <Button text="3" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-        <Button text="-" onAction="#onOperatorClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="3" GridPane.rowIndex="2" style="-fx-base: #e67e22;"/>
+        <Button text="1" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="0" GridPane.rowIndex="2" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../vr/1.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button text="2" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="1" GridPane.rowIndex="2" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../vr/2.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button text="3" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="2" GridPane.rowIndex="2" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../vr/3.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button text="-" onAction="#onOperatorClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="3" GridPane.rowIndex="2" style="-fx-base: #e67e22;" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../vr/menos.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
 
-        <Button text="C" onAction="#onClearClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-base: #e74c3c;"/>
-        <Button text="0" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-        <Button text="=" onAction="#onEqualClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="2" GridPane.rowIndex="3" style="-fx-base: #2ecc71;"/>
-        <Button text="+" onAction="#onOperatorClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="3" GridPane.rowIndex="3" style="-fx-base: #e67e22;"/>
+        <Button text="C" onAction="#onClearClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-base: #e74c3c;" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../vr/clear.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        
+        <Button text="0" onAction="#onNumberClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="1" GridPane.rowIndex="3" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../vr/0.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button text="=" onAction="#onEqualClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="2" GridPane.rowIndex="3" style="-fx-base: #2ecc71;" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../vr/igual.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button text="+" onAction="#onOperatorClick" prefWidth="60" prefHeight="60" GridPane.columnIndex="3" GridPane.rowIndex="3" style="-fx-base: #e67e22;" contentDisplay="GRAPHIC_ONLY">
+            <graphic>
+                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../vr/mas.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </Button>
     </GridPane>
 </VBox>
