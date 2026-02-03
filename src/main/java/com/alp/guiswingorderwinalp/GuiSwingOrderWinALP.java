@@ -669,6 +669,21 @@ public class GuiSwingOrderWinALP extends JFrame {
 
         JOptionPane.showMessageDialog(this, scrollPane, "Pedidos guardados (" + orders.size() + ")", JOptionPane.INFORMATION_MESSAGE);
     }
+    
+    private void abrirCalculadora() {
+    javafx.application.Platform.runLater(() -> {
+        try {
+            javafx.stage.Stage stage = new javafx.stage.Stage();
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/com/alp/guiswingorderwinalp/calculator.fxml"));
+            javafx.scene.Parent root = loader.load();
+            stage.setScene(new javafx.scene.Scene(root));
+            stage.setTitle("Calculadora de Pedidos");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    });
+}
 
     // Lanza la calculadora según el sistema operativo
     private void launchCalculator() { 
@@ -757,6 +772,7 @@ public class GuiSwingOrderWinALP extends JFrame {
     }
     
     public static void main(String[] args) {
+        javafx.application.Platform.startup(() -> {});
         SwingUtilities.invokeLater(() -> {
             GuiSwingOrderWinALP win = new GuiSwingOrderWinALP();
             win.setVisible(true);
