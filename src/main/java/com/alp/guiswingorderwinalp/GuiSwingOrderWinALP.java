@@ -797,12 +797,32 @@ public class GuiSwingOrderWinALP extends JFrame {
     }
 
     public static void main(String[] args) {
+        // Iniciamos el entorno de JavaFX
         javafx.application.Platform.startup(() -> {
+            // Evitamos que JavaFX se cierre completamente al cerrar el Login
+            // Esto es importante para que luego la calculadora funcione
             javafx.application.Platform.setImplicitExit(false);
-        });
-        SwingUtilities.invokeLater(() -> {
-            GuiSwingOrderWinALP win = new GuiSwingOrderWinALP();
-            win.setVisible(true);
+
+            try {
+                // Cargar el FXML del Login
+                javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(
+                        GuiSwingOrderWinALP.class.getResource("/com/alp/guiswingorderwinalp/login.fxml")
+                );
+
+                // Crear la escena y el escenario (Stage)
+                javafx.scene.Parent root = loader.load();
+                javafx.stage.Stage stage = new javafx.stage.Stage();
+                stage.setTitle("Login - TakeOrderApp");
+                stage.setScene(new javafx.scene.Scene(root));
+
+                // Mostrar la ventana de Login
+                stage.show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                // Si falla el login, intentamos abrir la app principal por seguridad o mostramos error
+                System.err.println("Error al cargar el login.fxml: " + e.getMessage());
+            }
         });
     }
 
